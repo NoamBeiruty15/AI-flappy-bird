@@ -11,7 +11,7 @@ pygame.display.set_caption("Flappy Bird")
 
 width, height = 600, 800
 screen = pygame.display.set_mode((width, height))
-clock = pygame.time.Clock()  # To control FPS
+clock = pygame.time.Clock()
 bird_x = 230
 bird_y = 350
 STAT_FONT = pygame.font.SysFont("comicsans", 30)
@@ -51,7 +51,7 @@ class Bird:
         displacement = self.vel * self.tick_count + 0.5 * gravity * (self.tick_count ** 2)
 
         if displacement >= 16:
-            displacement = 16  # Terminal velocity
+            displacement = 16  
 
         if displacement < 0:
             displacement -= 2
@@ -71,7 +71,7 @@ class Bird:
         win.blit(rotated_image, new_rect.topleft)
 
     def get_mask(self):
-        return self.mask  # Return the bird's mask
+        return self.mask 
 
 
 class Base:
@@ -129,8 +129,8 @@ class Pipe:
                     self.passed = True
 
     def draw(self, win):
-        win.blit(self.PIPE_TOP, (self.x, self.top))  # Draw top pipe
-        win.blit(self.PIPE_BOTTOM, (self.x, self.bottom))  # Draw bottom pipe
+        win.blit(self.PIPE_TOP, (self.x, self.top))  
+        win.blit(self.PIPE_BOTTOM, (self.x, self.bottom))
 
     def collide(self, bird):
         bird_mask = bird.get_mask()
@@ -140,10 +140,10 @@ class Pipe:
         top_offset = (self.x - bird.x, self.top - round(bird.y))
         bottom_offset = (self.x - bird.x, self.bottom - round(bird.y))
 
-        b_point = bird_mask.overlap(bottom_mask, bottom_offset)
-        t_point = bird_mask.overlap(top_mask, top_offset)
+        bottom_point = bird_mask.overlap(bottom_mask, bottom_offset)
+        top_point = bird_mask.overlap(top_mask, top_offset)
 
-        return b_point is not None or t_point is not None  # Check for overlap
+        return bottom_point is not None or top_point is not None 
 
 
 class Game:
@@ -154,25 +154,21 @@ class Game:
         self.config = config
         self.config_genomes = genomes
 
-        self.gravity = 2  # Gravity value that controls how fast things fall
+        self.gravity = 2  
         self.base = Base(730)
         self.pipes = [Pipe(600)]
         self.score = 0
         self.running = True
-        self.PIPE_SPAWN_TIME = 1500  # Milliseconds
-        self.last_pipe = pygame.time.get_ticks()  # Time of the last pipe spawned
-        self.paused = False
+        self.PIPE_SPAWN_TIME = 1500 # 1.5s
+        self.last_pipe = pygame.time.get_ticks() 
         self.pipe_index = 0
         self.draw_red_lines = draw_red_lines
     
     def create_neural_networks(self):
         for genome_id, genome in self.config_genomes: 
-            genome.fitness = 0  # Initialize fitness to 0
+            genome.fitness = 0  
 
-            # Create the neural network for this genome
             network = neat.nn.FeedForwardNetwork.create(genome, self.config)
-            
-            # Append to networks and birds
             self.networks.append(network)
             self.birds.append(Bird(bird_x, bird_y))
             self.genoms.append(genome)
@@ -252,11 +248,12 @@ class Game:
         if not self.running:
             return
 
-        screen.blit(BG_IMG, (0, 0))  # Draw background
+        screen.blit(BG_IMG, (0, 0))  
 
         for bird in self.birds:
-            bird.draw(screen)  # Ensure bird drawing is called
+            bird.draw(screen) 
 
+            # Draw red lines
             if self.draw_red_lines:
                 pygame.draw.line(screen, (255,0,0), (bird.x+bird.img.get_width()/2, bird.y + bird.img.get_height()/2), (self.pipes[self.pipe_index].x + self.pipes[self.pipe_index].PIPE_TOP.get_width()/2, self.pipes[self.pipe_index].height), 5)
                 pygame.draw.line(screen, (255,0,0), (bird.x+bird.img.get_width()/2, bird.y + bird.img.get_height()/2), (self.pipes[self.pipe_index].x + self.pipes[self.pipe_index].PIPE_BOTTOM.get_width()/2, self.pipes[self.pipe_index].bottom), 5)
@@ -278,7 +275,7 @@ class Game:
 
         
 
-        pygame.display.update()  # Update the display
+        pygame.display.update()  
 
     def run(self):
         global generation
@@ -294,7 +291,7 @@ class Game:
             if len(self.birds) < 1:
                 break
 
-            if self.score >= 50: # Break if a bird can't lose - and save the bird
+            if self.score >= 50: # Save bird if it's really good
                 pickle.dump(self.networks[0],open("best.pickle", "wb"))
 
 
@@ -312,7 +309,6 @@ def run(config_path):
     p = neat.Population(config)
 
 
-    # Run for up to 50 generations.
     winner = p.run(eval_genomes, 50)
 
     print('\nBest genome:\n{!s}'.format(winner))

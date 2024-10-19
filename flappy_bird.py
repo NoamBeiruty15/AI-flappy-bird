@@ -10,7 +10,7 @@ pygame.display.set_caption("Flappy Bird")
 
 width, height = 600, 800
 screen = pygame.display.set_mode((width, height))
-clock = pygame.time.Clock()  # To control FPS
+clock = pygame.time.Clock()
 bird_x = 230
 bird_y = 350
 STAT_FONT = pygame.font.SysFont("comicsans", 40)
@@ -49,7 +49,7 @@ class Bird:
         displacement = self.vel * self.tick_count + 0.5 * gravity * (self.tick_count ** 2)
 
         if displacement >= 16:
-            displacement = 16  # Terminal velocity
+            displacement = 16 
 
         if displacement < 0:
             displacement -= 2
@@ -69,7 +69,7 @@ class Bird:
         win.blit(rotated_image, new_rect.topleft)
 
     def get_mask(self):
-        return self.mask  # Return the bird's mask
+        return self.mask 
 
 
 class Base:
@@ -126,8 +126,8 @@ class Pipe:
                 self.passed = True
 
     def draw(self, win):
-        win.blit(self.PIPE_TOP, (self.x, self.top))  # Draw top pipe
-        win.blit(self.PIPE_BOTTOM, (self.x, self.bottom))  # Draw bottom pipe
+        win.blit(self.PIPE_TOP, (self.x, self.top)) 
+        win.blit(self.PIPE_BOTTOM, (self.x, self.bottom))
 
     def collide(self, bird):
         bird_mask = bird.get_mask()
@@ -140,19 +140,19 @@ class Pipe:
         b_point = bird_mask.overlap(bottom_mask, bottom_offset)
         t_point = bird_mask.overlap(top_mask, top_offset)
 
-        return b_point is not None or t_point is not None  # Check for overlap
+        return b_point is not None or t_point is not None  
 
 
 class Game:
     def __init__(self):
-        self.gravity = 2  # Gravity value that controls how fast things fall
+        self.gravity = 2 
         self.base = Base(730)
         self.bird = Bird(bird_x, bird_y)
         self.pipes = []
         self.score = 0
         self.running = True
-        self.PIPE_SPAWN_TIME = 2000  # Milliseconds
-        self.last_pipe = pygame.time.get_ticks()  # Time of the last pipe spawned
+        self.PIPE_SPAWN_TIME = 2000
+        self.last_pipe = pygame.time.get_ticks()
         self.paused = False
 
     def handle_events(self):
@@ -177,19 +177,17 @@ class Game:
             self.bird.move(self.gravity)
             self.base.move()
 
-            # Handle pipe generation
             current_time = pygame.time.get_ticks()
             if current_time - self.last_pipe > self.PIPE_SPAWN_TIME:
                 self.pipes.append(Pipe(600))  
                 self.last_pipe = current_time
 
-            # Move pipes
             for pipe in self.pipes:
                 pipe.move()
                 if ((self.bird.x - pipe.x) > 50) and pipe.passed == False:
                     self.score += 1 
                 if pipe.x + pipe.PIPE_TOP.get_width() < 0:
-                    self.pipes.remove(pipe)  # Remove pipes that have gone off screen
+                    self.pipes.remove(pipe) 
                     
 
                 if pipe.collide(self.bird): 
@@ -199,11 +197,11 @@ class Game:
         if (self.running == False):
             return
             
-        screen.blit(BG_IMG, (0, 0))  # Draw background
-        self.bird.draw(screen)  # Draw bird
-        self.base.draw(screen)  # Draw base
+        screen.blit(BG_IMG, (0, 0))  
+        self.bird.draw(screen)  
+        self.base.draw(screen)  
         for pipe in self.pipes:
-            pipe.draw(screen)  # Draw pipes
+            pipe.draw(screen)  
 
         score_label = STAT_FONT.render("Score: " + str(self.score),1,(255,255,255))
         screen.blit(score_label, (20, 5))
@@ -212,10 +210,10 @@ class Game:
 
     def run(self):
         while self.running:
-            clock.tick(35)  # Run at 30 FPS
-            self.handle_events()  # Handle player input
-            self.update()  # Update game state
-            self.draw()  # Render everything
+            clock.tick(35)  
+            self.handle_events()  
+            self.update() 
+            self.draw()  
 
         pygame.quit()
 
