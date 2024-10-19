@@ -187,7 +187,7 @@ class Game:
 
         for x, bird in enumerate(self.birds):
             output = self.networks[x].activate(
-                (bird.y, abs(bird.y - self.pipes[self.pipe_index].height), abs(bird.y - self.pipes[self.pipe_index].bottom))
+                (bird.y, abs(bird.y - self.pipes[self.pipe_index].height), abs(bird.y - self.pipes[self.pipe_index].bottom)) # Passing to the networks: bird's y, distance between top pipe, distance between bottom pipe
             )
 
             if output[0] > 0.5:
