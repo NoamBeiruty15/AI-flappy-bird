@@ -21,11 +21,9 @@ AI Flappy Bird, a Python-based implementation of the classic Flappy Bird game, e
 - **Dynamic Environment**: Pipes spawn randomly, making the game more challenging.
 - **Score Tracking**: Keeps track of the score based on pipes passed.
 
-## Getting Started
+### Dependencies
 
 To run this project, you'll need Python installed on your machine, along with the necessary dependencies.
-
-### Dependencies
 
 Make sure you have the following installed:
 
@@ -33,15 +31,15 @@ Make sure you have the following installed:
 - Pygame library
 - NEAT-Python library
 
-1. In your terminal install:
+1. In your terminal run:
 ```bash
-   pip install pygame
-   pip install neat-python 
+pip install pygame
+pip install neat-python 
 ```
 
 2. Clone the repository:
    ```bash
-   git clone https://github.com/NoamBeiruty15/AI-flappy-bird
+git clone https://github.com/NoamBeiruty15/AI-flappy-bird
 ```
 ## File Structure
 
