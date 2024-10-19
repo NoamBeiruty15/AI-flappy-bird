@@ -4,6 +4,8 @@ AI Flappy Bird is a Python-based implementation of the classic Flappy Bird game,
 
 ![Example of the A.I birds in action](images/Birds_In_Action.png)
 
+![Video example of the A.I birds in action](videos/Birds_In_Action.mov)
+
 ## Table of Contents
 
 - [Features](#features)
