@@ -17,6 +17,7 @@ AI Flappy Bird is a Python-based implementation of the classic Flappy Bird game,
 ## Features
 
 - **AI Player**: Uses NEAT to evolve neural networks that control the bird.
+- **User Player**: Uses space bar to jump the user controls the bird.
 - **User Interface**: Pygame-based UI with smooth graphics and animations.
 - **Dynamic Environment**: Pipes spawn randomly, making the game more challenging.
 - **Score Tracking**: Keeps track of the score based on pipes passed.
