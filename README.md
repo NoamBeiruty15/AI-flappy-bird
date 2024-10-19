@@ -9,9 +9,7 @@ AI Flappy Bird, a Python-based implementation of the classic Flappy Bird game, e
 ## Table of Contents
 
 - [Features](#features)
-- [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
-- [File Structure](#file-structure)
 
 ## Features
 
@@ -40,4 +38,4 @@ pip install neat-python
 2. Clone the repository:
    ```bash
     git clone https://github.com/NoamBeiruty15/AI-flappy-bird
-```
+    ``` 
