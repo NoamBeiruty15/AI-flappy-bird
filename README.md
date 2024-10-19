@@ -39,7 +39,7 @@ pip install neat-python
 
 2. Clone the repository:
    ```bash
-git clone https://github.com/NoamBeiruty15/AI-flappy-bird
+    git clone https://github.com/NoamBeiruty15/AI-flappy-bird
 ```
 ## File Structure
 
