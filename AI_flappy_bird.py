@@ -291,8 +291,10 @@ class Game:
             if len(self.birds) < 1:
                 break
 
-            if self.score >= 50: # Save bird if it's really good
-                pickle.dump(self.networks[0],open("best.pickle", "wb"))
+            #Save good birds
+
+            #if self.score >= 50: # Save bird if it's really good
+                #pickle.dump(self.networks[0],open("best.pickle", "wb"))
 
 
 def eval_genomes(genomes, config):
