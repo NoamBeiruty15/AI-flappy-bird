@@ -1,6 +1,6 @@
 # AI Flappy Bird
 
-AI Flappy Bird is a Python-based implementation of the classic Flappy Bird game, enhanced with an AI component using NEAT (NeuroEvolution of Augmenting Topologies). The AI learns to play the game through evolution, improving its performance over generations.
+AI Flappy Bird, a Python-based implementation of the classic Flappy Bird game, enhanced with an AI component using NEAT (NeuroEvolution of Augmenting Topologies). The AI learns to play the game through evolution, improving its performance over generations.
 
 ![Example of the A.I birds in action](images/Birds_In_Action.png)
 
@@ -11,12 +11,7 @@ AI Flappy Bird is a Python-based implementation of the classic Flappy Bird game,
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
-- [Game Instructions](#game-instructions)
-- [How the AI Works](#how-the-ai-works)
 - [File Structure](#file-structure)
-- [Screenshots](#screenshots)
-- [Future Improvements](#future-improvements)
-- [License](#license)
 
 ## Features
 
@@ -30,7 +25,7 @@ AI Flappy Bird is a Python-based implementation of the classic Flappy Bird game,
 
 To run this project, you'll need Python installed on your machine, along with the necessary dependencies.
 
-### Prerequisites
+### Dependencies
 
 Make sure you have the following installed:
 
@@ -44,3 +39,18 @@ Make sure you have the following installed:
    ```bash
    git clone https://github.com/yourusername/AI-flappy-bird.git
    cd AI-flappy-bird
+
+
+## File Structure
+
+```plaintext
+AI-flappy-bird/
+│
+├── AI_flappy_bird.py      # Main game logic and AI integration
+├── flappy_bird.py         # Normal flappy bird for a user to play
+├── neat-config.txt        # Configuration for NEAT
+├── images/                # Folder containing game images
+    ├── bird1.png          # Bird image
+    ├── bg.png             # Background image
+    ├── base.png           # Base image
+    └── pipe.png           # Pipe image
