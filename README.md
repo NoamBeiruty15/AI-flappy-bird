@@ -2,6 +2,8 @@
 
 AI Flappy Bird is a Python-based implementation of the classic Flappy Bird game, enhanced with an AI component using NEAT (NeuroEvolution of Augmenting Topologies). The AI learns to play the game through evolution, improving its performance over generations.
 
+![Example of the A.I birds in action](images/Birds_In_Action.png)
+
 ## Table of Contents
 
 - [Features](#features)
