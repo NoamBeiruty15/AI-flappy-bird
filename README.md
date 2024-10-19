@@ -41,16 +41,3 @@ pip install neat-python
    ```bash
     git clone https://github.com/NoamBeiruty15/AI-flappy-bird
 ```
-## File Structure
-
-```plaintext
-AI-flappy-bird/
-│
-├── AI_flappy_bird.py      # Main game logic and AI integration
-├── flappy_bird.py         # Normal flappy bird for a user to play
-├── neat-config.txt        # Configuration for NEAT
-├── images/                # Folder containing game images
-    ├── bird1.png          # Bird image
-    ├── bg.png             # Background image
-    ├── base.png           # Base image
-    └── pipe.png           # Pipe image
