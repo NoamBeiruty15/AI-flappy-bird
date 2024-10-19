@@ -33,17 +33,17 @@ Make sure you have the following installed:
 - Pygame library
 - NEAT-Python library
 
-In your terminal install::
+1. In your terminal install:
 ```bash
    pip install pygame
    pip install neat-python 
 ```
 ### Installation
 
-Clone the repository:
+2. Clone the repository:
    ```bash
    git clone https://github.com/NoamBeiruty15/AI-flappy-bird
-
+```
 ## File Structure
 
 ```plaintext
