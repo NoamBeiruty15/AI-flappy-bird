@@ -36,7 +36,7 @@ Make sure you have the following installed:
 ```bash
    pip install pygame
    pip install neat-python 
-
+```
 ### Installation
 
 1. Clone the repository:
