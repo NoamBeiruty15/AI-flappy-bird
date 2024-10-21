@@ -39,7 +39,7 @@ class Bird:
         self.height = self.y
         self.img = self.IMGS
         self.mask = pygame.mask.from_surface(self.img) 
-        self.jump_sterngth = 8
+        self.jump_sterngth = 8.5
 
     def jump(self):
         self.vel = -(self.jump_sterngth)
@@ -156,7 +156,7 @@ class Game:
 
         self.gravity = 2  
         self.base = Base(730)
-        self.pipes = [Pipe(600)]
+        self.pipes = [Pipe(700)]
         self.score = 0
         self.running = True
         self.PIPE_SPAWN_TIME = 1500 # 1.5s
@@ -298,7 +298,7 @@ class Game:
 
 
 def eval_genomes(genomes, config):
-    game = Game(genomes, config, True) # Draw red lines - True
+    game = Game(genomes, config, False) # Draw red lines - True
     game.run()  
 
 
@@ -311,7 +311,7 @@ def run(config_path):
     p = neat.Population(config)
 
 
-    winner = p.run(eval_genomes, 50)
+    winner = p.run(eval_genomes, 150)
 
     print('\nBest genome:\n{!s}'.format(winner))
 

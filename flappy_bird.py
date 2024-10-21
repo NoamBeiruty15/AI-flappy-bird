@@ -37,7 +37,7 @@ class Bird:
         self.height = self.y
         self.img = self.IMGS
         self.mask = pygame.mask.from_surface(self.img) 
-        self.jump_sterngth = 8
+        self.jump_sterngth = 8.5
 
     def jump(self):
         self.vel = -(self.jump_sterngth)
@@ -75,12 +75,14 @@ class Bird:
 class Base:
     VEL = 5
     WIDTH = BASE_IMG.get_width()
+    HEIGHT = BASE_IMG.get_height()
     IMG = BASE_IMG
 
     def __init__(self, y):
         self.y = y
         self.x1 = 0
         self.x2 = self.WIDTH
+        self.height = self.HEIGHT
 
     def move(self):
         self.x1 -= self.VEL
@@ -148,7 +150,7 @@ class Game:
         self.gravity = 2 
         self.base = Base(730)
         self.bird = Bird(bird_x, bird_y)
-        self.pipes = []
+        self.pipes = [Pipe(700)]
         self.score = 0
         self.running = True
         self.PIPE_SPAWN_TIME = 2000
@@ -179,7 +181,7 @@ class Game:
 
             current_time = pygame.time.get_ticks()
             if current_time - self.last_pipe > self.PIPE_SPAWN_TIME:
-                self.pipes.append(Pipe(600))  
+                self.pipes.append(Pipe(700))  
                 self.last_pipe = current_time
 
             for pipe in self.pipes:
