@@ -159,7 +159,7 @@ class Game:
         self.pipes = [Pipe(700)]
         self.score = 0
         self.running = True
-        self.PIPE_SPAWN_TIME = 1500 # 1.5s
+        self.PIPE_SPAWN_TIME = 1750 # 1.75s
         self.last_pipe = pygame.time.get_ticks() 
         self.pipe_index = 0
         self.draw_red_lines = draw_red_lines
