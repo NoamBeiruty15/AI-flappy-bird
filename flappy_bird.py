@@ -37,7 +37,7 @@ class Bird:
         self.height = self.y
         self.img = self.IMGS
         self.mask = pygame.mask.from_surface(self.img) 
-        self.jump_sterngth = 8
+        self.jump_sterngth = 8.2
 
     def jump(self):
         self.vel = -(self.jump_sterngth)
