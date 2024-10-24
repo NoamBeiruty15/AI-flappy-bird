@@ -3,6 +3,7 @@ import os
 import random
 import neat
 import pickle
+import sys
 
 pygame.init()
 pygame.display.set_caption("Flappy Bird")
@@ -21,7 +22,7 @@ generation = 0
 BIRD_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images/bird1.png")).convert_alpha())
 BG_IMG = pygame.transform.scale(pygame.image.load(os.path.join("images", "bg.png")).convert_alpha(), (600, 900))
 BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images", "base.png")).convert_alpha())
-PIPE_IMG = pygame.transform.scale(pygame.image.load(os.path.join("images", "pipe.png")).convert_alpha(), (70, 500))
+PIPE_IMG = pygame.transform.scale(pygame.image.load(os.path.join("images", "pipe.png")).convert_alpha(), (95, 500))
 
 # ------------- Classes -------------
 
@@ -39,7 +40,7 @@ class Bird:
         self.height = self.y
         self.img = self.IMGS
         self.mask = pygame.mask.from_surface(self.img) 
-        self.jump_sterngth = 8.25
+        self.jump_sterngth = 8
 
     def jump(self):
         self.vel = -(self.jump_sterngth)
@@ -48,10 +49,11 @@ class Bird:
 
     def move(self, gravity):
         self.tick_count += 1
-        displacement = self.vel * self.tick_count + 0.5 * gravity * (self.tick_count ** 2)
+        displacement = (self.vel * self.tick_count) + (0.5 * gravity * (self.tick_count ** 2)) - 0.1
+
 
         if displacement >= 16:
-            displacement = 16  
+            displacement = 16 
 
         if displacement < 0:
             displacement -= 2
@@ -71,8 +73,7 @@ class Bird:
         win.blit(rotated_image, new_rect.topleft)
 
     def get_mask(self):
-        return self.mask 
-
+        return self.mask  
 
 class Base:
     VEL = 5
@@ -97,7 +98,6 @@ class Base:
     def draw(self, win):
         win.blit(self.IMG, (self.x1, self.y))
         win.blit(self.IMG, (self.x2, self.y))
-
 
 class Pipe:
     VERTICAL_GAP = 200
@@ -145,7 +145,6 @@ class Pipe:
 
         return bottom_point is not None or top_point is not None 
 
-
 class Game:
     def __init__(self, genomes, config, draw_red_lines):
         self.networks = []
@@ -180,6 +179,7 @@ class Game:
             if event.type == pygame.QUIT:
                 self.running = False
                 pygame.quit()
+                sys.exit()
 
         if (self.birds and self.pipes):
             if len(self.pipes) > 1 and self.birds[0].x > self.pipes[0].x + 55:
@@ -210,11 +210,6 @@ class Game:
             else:
                 bird.move(self.gravity)
                 self.genoms[x].fitness += 0.1
-
-        for index in sorted(birds_to_remove, reverse=True):
-            self.birds.pop(index)
-            self.networks.pop(index)
-            self.genoms.pop(index)
 
         self.base.move()
         current_time = pygame.time.get_ticks()
@@ -296,11 +291,9 @@ class Game:
             #if self.score >= 50: # Save bird if it's really good
                 #pickle.dump(self.networks[0],open("best.pickle", "wb"))
 
-
 def eval_genomes(genomes, config):
     game = Game(genomes, config, False) # Draw red lines - True
     game.run()  
-
 
 # ------------- A.I stuff -------------
 def run(config_path):
@@ -314,7 +307,6 @@ def run(config_path):
     winner = p.run(eval_genomes, 150)
 
     print('\nBest genome:\n{!s}'.format(winner))
-
 
 
 if __name__ == "__main__":

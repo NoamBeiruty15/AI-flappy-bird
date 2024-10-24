@@ -19,7 +19,7 @@ STAT_FONT = pygame.font.SysFont("comicsans", 40)
 BIRD_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images/bird1.png")).convert_alpha())
 BG_IMG = pygame.transform.scale(pygame.image.load(os.path.join("images", "bg.png")).convert_alpha(), (600, 900))
 BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images", "base.png")).convert_alpha())
-PIPE_IMG = pygame.transform.scale(pygame.image.load(os.path.join("images", "pipe.png")).convert_alpha(), (70, 500))
+PIPE_IMG = pygame.transform.scale(pygame.image.load(os.path.join("images", "pipe.png")).convert_alpha(), (95, 500))
 
 # ------------- Classes -------------
 
@@ -37,7 +37,7 @@ class Bird:
         self.height = self.y
         self.img = self.IMGS
         self.mask = pygame.mask.from_surface(self.img) 
-        self.jump_sterngth = 8.25
+        self.jump_sterngth = 8
 
     def jump(self):
         self.vel = -(self.jump_sterngth)
@@ -46,7 +46,8 @@ class Bird:
 
     def move(self, gravity):
         self.tick_count += 1
-        displacement = self.vel * self.tick_count + 0.5 * gravity * (self.tick_count ** 2)
+        displacement = (self.vel * self.tick_count) + (0.5 * gravity * (self.tick_count ** 2)) - 0.1
+
 
         if displacement >= 16:
             displacement = 16 
